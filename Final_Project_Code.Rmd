@@ -17,6 +17,8 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r cars}
 summary(cars)
+
+df <- read.csv("~/Downloads/background_noise_focus_dataset.csv")
 ```
 
 ## Including Plots
