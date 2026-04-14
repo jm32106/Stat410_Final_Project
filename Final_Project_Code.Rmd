@@ -42,6 +42,29 @@ plot(focus_avg$noise_volume_level, focus_avg$perceived_focus_score,
      col = "deeppink", xlab = "Noise Volume 1-10", ylab = "Average Focus Score")
 abline(lm(perceived_focus_score ~ noise_volume_level, data = df), col = "red")
 
+#split by type of noise, e.g. instrumental vs. traffic
+traffic_df <- subset(df, background_noise_type == "Traffic Noise" )
+instrumental_df <- subset(df, background_noise_type == "Instrumental Music" )
+
+instr_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
+                             data = instrumental_df, mean)
+
+traffic_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
+                             data = traffic_df, mean)
+
+plot(instr_avg_focus$noise_volume_level, instr_avg_focus$perceived_focus_score, 
+     col = "blue", xlab = "Volume 1-10", ylab = "Average Focus Score Instr",
+     type = "b")
+abline(lm(perceived_focus_score ~ noise_volume_level, data = instr_avg_focus), 
+       col = "red")
+
+
+plot(traffic_avg_focus$noise_volume_level, traffic_avg_focus$perceived_focus_score, 
+     col = "blue", xlab = "Volume 1-10", ylab = "Average Focus Score Traffic",
+     type = "b")
+abline(lm(perceived_focus_score ~ noise_volume_level, data = instr_avg_focus), 
+       col = "red")
+
 
 
 
