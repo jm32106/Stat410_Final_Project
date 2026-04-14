@@ -17,6 +17,36 @@ df <- read.csv("~/Downloads/background_noise_focus_dataset.csv")
 
 ```{r pressure, echo=FALSE}
 #Exploratory Data Analysis
+summary(df)
+
+#i converted all ofthese b/c they're all characters
+df$background_noise_type <- as.factor(df$background_noise_type)
+df$role <- as.factor(df$role)
+df$task_type <- as.factor(df$task_type)
+
+boxplot(perceived_focus_score ~ background_noise_type, data = df, las =2 )
+
+#data is skewed - we may need to mention this
+hist(df$perceived_focus_score)
+
+#no outliers, median is 5
+boxplot(df$perceived_focus_score)
+
+#this isn't really helpful
+plot(df$noise_volume_level,df$perceived_focus_score)
+
+?mean
+focus_avg <- aggregate(perceived_focus_score ~ noise_volume_level,
+                       data = df, mean)
+plot(focus_avg$noise_volume_level, focus_avg$perceived_focus_score, 
+     col = "deeppink", xlab = "Noise Volume 1-10", ylab = "Average Focus Score")
+abline(lm(perceived_focus_score ~ noise_volume_level, data = df), col = "red")
+
+
+
+
+
+
 ```
 
 
