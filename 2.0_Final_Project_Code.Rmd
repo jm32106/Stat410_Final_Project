@@ -30,11 +30,11 @@ plot(df$age, df$charges,
      main = "Insurance Charges by Age and Smoking Status",
      xlab = "Age", ylab = "Charges ($)")
 
-# Add a Legend (this is the most important 'label' for this plot)
+# Add a Legend
 legend("topleft", 
        legend = c("Smoker", "Non-Smoker"), 
        col = c("red", "purple"), 
-       pch = 16, 
+       pch = 16, )
 
 ```
 
