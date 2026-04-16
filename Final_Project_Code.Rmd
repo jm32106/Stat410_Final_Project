@@ -42,7 +42,12 @@ plot(focus_avg$noise_volume_level, focus_avg$perceived_focus_score,
      col = "deeppink", xlab = "Noise Volume 1-10", ylab = "Average Focus Score")
 abline(lm(perceived_focus_score ~ noise_volume_level, data = df), col = "red")
 
+
+```
+
+
 #CATEGORY: split by type of noise, e.g. instrumental vs. traffic
+```{r pressure, echo=FALSE}
 #Traffic noise type
 traffic_df <- subset(df, background_noise_type == "Traffic Noise" )
 traffic_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
@@ -54,10 +59,16 @@ plot(traffic_avg_focus$noise_volume_level, traffic_avg_focus$perceived_focus_sco
 abline(lm(perceived_focus_score ~ noise_volume_level, data = instr_avg_focus), 
        col = "red")
 
+#Hypothesis test for linear relationship
 traffic_model <- lm(traffic_avg_focus)
 summary(traffic_model)
 
+# Fail to reject null hypothesis, no linear correlation
+```
+The p value is 0.128, so we fail to reject the null hypothesis. There is no significant linear relationship between traffic noise volume and average focus score
 
+
+```{r pressure, echo=FALSE}
 #Instrumental noise type
 instrumental_df <- subset(df, background_noise_type == "Instrumental Music" )
 instr_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
@@ -68,6 +79,14 @@ plot(instr_avg_focus$noise_volume_level, instr_avg_focus$perceived_focus_score,
 abline(lm(perceived_focus_score ~ noise_volume_level, data = instr_avg_focus), 
        col = "red")
 
+#Hypothesis test for linear relationship
+instrumental_model <- lm(instr_avg_focus)
+summary(instrumental_model)
+```
+The p value is 0.173, so we fail to reject the null hypothesis. There is no significant linear relationship between instrumental noise volume and average focus score
+
+
+```{r pressure, echo=FALSE}
 #Songs with lyrics noise type
 lyrics_df <- subset(df, background_noise_type == "Songs with Lyrics" )
 lyrics_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
@@ -78,6 +97,14 @@ plot(lyrics_avg_focus$noise_volume_level, lyrics_avg_focus$perceived_focus_score
 abline(lm(perceived_focus_score ~ noise_volume_level, data = lyrics_avg_focus), 
        col = "red")
 
+#Hypothesis test for linear relationship
+lyrics_model <- lm(lyrics_avg_focus)
+summary(lyrics_model)
+```
+The p value is 0.929, so we fail to reject the null hypothesis. There is no significant linear relationship between lyrical noise volume and average focus score
+
+
+```{r pressure, echo=FALSE}
 #Silence noise type
 silence_df <- subset(df, background_noise_type == "Silence" )
 silence_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
@@ -88,22 +115,33 @@ plot(silence_avg_focus$noise_volume_level, silence_avg_focus$perceived_focus_sco
 abline(lm(perceived_focus_score ~ noise_volume_level, data = silence_avg_focus), 
        col = "red")
 
+#Hypothesis test for linear relationship
+silence_model <- lm(silence_avg_focus)
+summary(silence_model)
+```
+The p value is 0.999, so we fail to reject the null hypothesis. There is no significant linear relationship between silence noise volume and average focus score
 
+
+```{r pressure, echo=FALSE}
 #Cafe background noise type
-cafe_df <- subset(df, background_noise_type == "Cafe noise" )
+cafe_df <- subset(df, background_noise_type == "Cafe Noise" )
 cafe_avg_focus <- aggregate(perceived_focus_score ~ noise_volume_level,
-                             data = silence_df, mean)
+                             data = cafe_df, mean)
 plot(cafe_avg_focus$noise_volume_level, cafe_avg_focus$perceived_focus_score, 
-     col = "blue", xlab = "Volume 1-10", ylab = "Average Focus Score Silence",
+     col = "blue", xlab = "Volume 1-10", ylab = "Average Focus Score Cafe",
      type = "b")
 abline(lm(perceived_focus_score ~ noise_volume_level, data = cafe_avg_focus), 
        col = "red")
 
+#Hypothesis test for linear relationship
+cafe_model <- lm(cafe_avg_focus)
+summary(cafe_model)
+
+```
+The p value is 0.334, so we fail to reject the null hypothesis. There is no significant linear relationship between cafe noise volume and average focus score
 
 
-traffic_model <- lm(traffic_avg_focus)
-summary(traffic_model)
-
+```{r pressure, echo=FALSE}
 ```
 
 
