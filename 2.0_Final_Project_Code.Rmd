@@ -10,6 +10,31 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+#INSURANCE
+#Import data
+df <- read.csv("~/Downloads/insurance.csv")
+
+df$sex <- as.factor(df$sex)
+df$smoker <- as.factor(df$smoker)
+df$region <- as.factor(df$region)
+
+boxplot(charges ~ smoker, data = df, las =2 )
+
+plot(df$age, df$charges, main = "Age vs. Charges", xlab = "Age", ylab = "Charges")
+
+#SMOKER AND AGE
+colors <- ifelse(df$smoker == "yes", "red", "purple")
+
+plot(df$age, df$charges, 
+     col = colors, pch = 16,
+     main = "Insurance Charges by Age and Smoking Status",
+     xlab = "Age", ylab = "Charges ($)")
+
+# Add a Legend (this is the most important 'label' for this plot)
+legend("topleft", 
+       legend = c("Smoker", "Non-Smoker"), 
+       col = c("red", "purple"), 
+       pch = 16, 
 
 ```
 
